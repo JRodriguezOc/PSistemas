@@ -2,6 +2,7 @@
 #include <string>
 #include <stdexcept>
 #include <list>
+#include <limits>
 
 using namespace std;
 
@@ -63,6 +64,14 @@ int mainMenu() {
   cout << "4. Salir" << endl;
   int selection;
   cin >> selection;
+  if (cin.fail()) {
+    // Limpia y resetea el flujo de entrada
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // Vuelve a pedir la selección al usuario
+    cout << "Por favor, seleccione una opción válida: ";
+    cin >> selection;
+  }
   return selection;
 }
 
@@ -79,6 +88,14 @@ Guest getGuestInfo() {
   getline(cin, phone);
   cout << "Ingrese el número de habitación del huésped: ";
   cin >> room;
+  if (cin.fail()) {
+    // Limpia y resetea el flujo de entrada
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // Vuelve a pedir el número de habitación al usuario
+    cout << "Por favor, ingrese un número de habitación válido: ";
+    cin >> room;
+  }
   return { name, address, phone, room };
 }
 
@@ -87,6 +104,14 @@ int getRoomNumber() {
   int room;
   cout << "Ingrese el número de habitación del huésped: ";
   cin >> room;
+  if (cin.fail()) {
+    // Limpia y resetea el flujo de entrada
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    // Vuelve a pedir el número de habitación al usuario
+    cout << "Por favor, ingrese un número de habitación válido: ";
+    cin >> room;
+  }
   return room;
 }
 
@@ -133,4 +158,3 @@ int main() {
     }
   }
 }
-
